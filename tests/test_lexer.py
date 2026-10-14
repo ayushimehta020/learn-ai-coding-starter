@@ -73,3 +73,10 @@ def test_lexical_errors(source: str, line: int, message: str):
     assert info.value.line == line
     assert info.value.message == message
     assert str(info.value) == f"SlopLang lexical error at line {line}: {message}"
+
+
+def test_identifier_can_contain_digits():
+    tokens = tokenize("score2")
+
+    assert tokens[0].type is TokenType.IDENTIFIER
+    assert tokens[0].lexeme == "score2"
